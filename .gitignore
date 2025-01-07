@@ -1,0 +1,47 @@
+# Node modules
+
+node_modules/
+
+
+
+# Build artifacts
+
+build/
+
+dist/
+
+
+
+# Environment variables
+
+.env
+
+.env.local
+
+
+
+# Database related files
+
+*.db
+
+mongodb.log
+
+
+
+# IDE/Editor specific files
+
+.vscode/
+
+*.suo
+
+.DS_Store
+
+
+
+# Logs and cache
+
+logs/
+
+*.log
+
+.npm

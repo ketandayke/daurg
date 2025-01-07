@@ -1,0 +1,206 @@
+
+.nav-bg{
+  background: "linear-gradient(90deg, rgba(131, 126, 226, 1) 24%, rgba(114, 114, 226, 1) 40%, rgba(0, 212, 255, 1) 100%)";
+  background-color:"blue";
+  
+}
+.nav-links{
+  display:flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.nav-link {
+ 
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  border-radius: 10px;
+  background: rgb(14, 14, 37);
+  transition: width 0.3s ease-in-out;
+}
+
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.mobile-menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+
+
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg);
+  top: 7px;
+  position: absolute;
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg);
+  top: 7px;
+  position: absolute;
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links-mobile {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 100%;
+    background:rgb(12, 12, 44);
+    padding: 2.8rem;
+    gap: 1rem;
+    animation: slideIn 0.3s ease forwards;
+  }
+
+  .mobile-menu-icon {
+    display: block;
+  }
+  .nav-link::after{
+    background:rgb(44, 137, 219);
+  }
+  
+}
+
+/* Slide-in Animation for Mobile Menu */
+@keyframes slideIn {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+.edu-link {
+ 
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.edu-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -4px;
+  width: 0;
+  height: 5px;
+  border-radius: 10px;
+  background: rgb(19, 19, 234);
+  transition: width 0.3s ease-in-out;
+}
+
+
+.edu-link:hover::after {
+  width: 100%;
+}
+.edu-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.custom-cursor {
+  width: 30px; /* Default size */
+  height: 30px;
+  border: 2px solid white; /* Thin border for visibility */
+  border-radius: 50%; /* Circular shape */
+  background-color: rgba(0, 0, 0, 0.8); /* Default color */
+  transform: translate(-50%, -50%); /* Center the cursor around the pointer */
+  mix-blend-mode: difference; /* Makes the cursor contrast against the background */
+  pointer-events: none; /* Prevent cursor from interfering with mouse events */
+  position: fixed; /* Sticks to the viewport */
+  z-index: 1000; /* Stays on top of other elements */
+  transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+.custom-cursor.hover {
+  width: 50px; /* Enlarges on hover */
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.8); /* Lighter color on hover */
+  transform: translate(-50%, -50%) scale(1.2); /* Scales up */
+}
+
+
+/* General styles */
+
+
+
+
+/*
+.edu-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 8px solid transparent;
+  border-radius: 8px;  
+  background: linear-gradient(90deg, #4a447f, #486acf, #28227a, #133e93, #275ab3, #3441a5, #1a1979, #4b3add);
+  background-size: 300% 300%;
+  background-clip: border-box;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  transition: transform 0.4s ease-in-out;
+  transform: scale(0);
+}
+
+.edu-link:hover::before {
+  transform: scale(1);
+  animation: border-animate 2s linear forwards;
+}
+
+@keyframes border-animate {
+  0% {
+    clip-path: polygon(0% 0%, 0% 100%,0% 100%,0% 100%);
+  }
+  25% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+  }
+  50% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+   
+  }*/
+
