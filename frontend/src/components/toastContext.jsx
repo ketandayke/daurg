@@ -5,12 +5,14 @@ const ToastContext= createContext();
 export const ToastProvider=({children})=>{
      const [toast,setToast] = useState(null);
 
-     const showToast=useCallback((message,type="success")=>{
+     const showToast = useCallback((message,type="success")=>{
         setToast({message,type});
+        // console.log("toast setted",toast);
+
         setTimeout(() => {
             setToast(null);
             
-        }, 3000);
+        }, 2000);
 
      },[]);
      return(
@@ -34,7 +36,7 @@ const Toast=({message,type})=>{
     };
 
     return (
-        <div className={`fixed top-5 right-5 px-4 py-2 rounded shadow ${typeStyles[type]||""}`}>
+        <div className={`fixed z-[1000] top-5 left-5 px-4 py-2 rounded shadow ${typeStyles[type]||""}`}>
             {message}
         </div>
     );   

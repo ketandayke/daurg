@@ -9,6 +9,13 @@
   justify-items: center;
   align-items: center;
 }
+.profile{
+  display:flex;
+  flex-direction:row-reverse;
+  justify-items: center;
+  align-items: center;
+
+}
 
 .nav-link {
  
@@ -35,6 +42,31 @@
 .nav-link:hover::after {
   width: 100%;
 }
+.form-link {
+ 
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.form-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 3px;
+  border-radius: 10px;
+  background: rgb(14, 14, 37);
+  transition: width 0.3s ease-in-out;
+}
+
+
+/* .form-link:active::after {
+  width: 100%;
+} */
 
 .mobile-menu-icon {
   display: none;
@@ -85,7 +117,10 @@
   .nav-link::after{
     background:rgb(44, 137, 219);
   }
-  
+  .profile{
+    display:flex;
+    flex-direction:row;
+  }
 }
 
 /* Slide-in Animation for Mobile Menu */
@@ -132,6 +167,19 @@
   display: inline-block;
   width: 100%;
   height: 100%;
+}
+
+
+.below-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 3px;
+  border-radius: 10px;
+  background: rgb(19, 19, 69);
+  transition: width 0.3s ease-in-out;
 }
 
 .custom-cursor {
