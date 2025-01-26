@@ -8,14 +8,15 @@ dotenv.config({
 connectDB()
 .then(()=>{
     app.on("error",(error)=>{
-        console.log("Error ",error);
+        // console.log("Error ",error);
         throw error;
     })
     app.listen(process.env.PORT,()=>{
-        console.log("app is live on http://localhost:8000");
+        // console.log("app is live on http://localhost:8000");
     })
 
 })
 .catch((error)=>{
-    console.log("Database connection failed ",error);
+    // console.log("Database connection failed ",error);
+    throw error;
 })

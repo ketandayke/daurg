@@ -1,4 +1,4 @@
-import Navbar from "./navbar";
+import Navbar from "./navbar/navbar.jsx";
 import Button from "./button";
 import Hero from "./hero";
 import Login from "./login";
@@ -19,5 +19,14 @@ import InfiniteSlider from "./infiniteSlider";
 import CustomCursor from "./customCursor";
 import UserProfile from "./userProfile";
 import { useAuth } from "./authContext";
-
-export{Navbar,Button,Hero,Login,MissionBox,Mission,Faculty,FacultyBox,EduBox,EduResource,Result,Testimonial,ReviewBox,Gallery,Footer,Icon,CarouselBox,InfiniteSlider,CustomCursor,UserProfile,useAuth}
+import EditProfile from "./editProfile.jsx";
+import About from "./about.jsx";
+import Contact from "./contact.jsx";
+import Centers from "./centers.jsx";
+import PrivacyPolicy from "./privacyPolicy.jsx";
+import Ownership from "./ownership.jsx";
+import FAQ from "./faq.jsx";
+import PYP from "./pyp.jsx";
+import Youtube from "./youtube.jsx";
+import Loader from "./loader.jsx";
+export{Navbar,Button,Hero,Login,MissionBox,Mission,Faculty,FacultyBox,EduBox,EduResource,Result,Testimonial,ReviewBox,Gallery,Footer,Icon,CarouselBox,InfiniteSlider,CustomCursor,UserProfile,useAuth,EditProfile,About,Contact,Centers,PrivacyPolicy,Ownership,FAQ,PYP,Youtube,Loader}

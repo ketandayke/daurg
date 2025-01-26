@@ -1,7 +1,8 @@
 import React from 'react'
 import EduBox from './eduBox'
-
+import { useNavigate } from 'react-router-dom'
 export default function EduResource() {
+ const {navigate}=useNavigate();
   return (
     <div className="bg-white w-full min-h-screen">
       <h2 className="text-2xl font-semibold text-center font-heading my-8">Explore Educational Resources</h2>
@@ -35,8 +36,8 @@ export default function EduResource() {
       </div>
       <div className=" mt-6 ml-2 sm:ml-24 ">
         <h2 className="text-xl font-heading font-semibold  ">Download previous years question papers</h2>
-         <div><a href="#" className="ml-4 font-body font-medium hover:underline">class 10th papers</a></div>       
-         <div><a href="#" className="ml-4 font-body font-medium hover:underline ">class 12th papers</a></div>      
+         <div><a href="/previous-year-papers"  className="ml-4 font-body font-medium hover:underline">class 10th papers</a></div>       
+         <div><a href="/previous-year-papers" className="ml-4 font-body font-medium hover:underline ">class 12th papers</a></div>      
         
       </div>
      

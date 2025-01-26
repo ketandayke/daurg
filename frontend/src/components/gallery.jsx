@@ -32,7 +32,7 @@ export default function Gallery() {
   const closeModal = () => setModalIsOpen(false);
 
   return (
-    <div className="w-full min-h-screen py-8">
+    <div id="gallery" className="w-full min-h-screen py-8">
       <h2 className="font-heading font-semibold text-2xl text-center text-black my-8">
         Experience D&G Academy in Action
       </h2>

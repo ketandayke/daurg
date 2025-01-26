@@ -1,15 +1,17 @@
 
 import React, { useEffect, useState } from "react";
-import { Button, Login, UserProfile } from "./index.js";
+import { Button, Login, UserProfile } from "../index.js";
 import { Link } from "react-scroll";
-import { useLoginForm } from "./loginFormContext";
-import { useAuth } from "./index.js";
+import { useLoginForm } from "../loginFormContext.jsx";
+import { useAuth } from "../index.js";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { showLoginForm, setShowLoginForm } = useLoginForm();
   const { user, setUser } = useAuth();
+  const navigate =useNavigate();
 
   // Lock/unlock body scroll when login form is shown
   useEffect(() => {
@@ -48,7 +50,7 @@ export default function Navbar() {
             />
           </a>
           <div className="profile gap-2 lg:gap-8">
-          <div className="">
+          <div className="ml-4">
           {user ? (
                 <UserProfile />
               ) : (
@@ -66,7 +68,8 @@ export default function Navbar() {
             }`}
           >
             <li>
-              <Link to="home" smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer">
+              <Link smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer"
+               onClick={()=>navigate("/")} >
                 Home
               </Link>
             </li>

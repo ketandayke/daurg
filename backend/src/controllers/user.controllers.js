@@ -2,6 +2,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponce } from "../utils/ApiResponce.js";
 import { User } from "../models/user.model.js";
+import { Message } from "../models/message.model.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 // Utility to generate tokens
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -93,16 +95,16 @@ const loginUser = asyncHandler(async (req, res) => {
 const getUser = asyncHandler(async (req, res) => {
   try {
     const user = req.user;
-    console.log("this is  request",req);
-    console.log("this is user getted form request",user);
+    // console.log("this is  request",req);
+    // console.log("this is user getted form request",user);
     if (!user) {
       return res.status(404).json(new ApiError(404, "User not found"));
     }
 
-    console.log("Fetched User:", user);
+    // console.log("Fetched User:", user);
     return res.status(200).json(new ApiResponce(200, "User found",user));
   } catch (error) {
-    console.error("Error in getUser:", error);
+    // console.error("Error in getUser:", error);
     return res.status(500).json(new ApiError(500, "An error occurred", error));
   }
 });
@@ -132,4 +134,95 @@ const logoutUser =asyncHandler(async(req,res)=>{
   
 });
 
-export { registerUser, loginUser,getUser,logoutUser };
+
+const updateUserProfile = asyncHandler(async (req, res) => {
+  try {
+    const { fullName, userType } = req.body;
+    const file = req.file; // Access the uploaded file
+
+    if (!fullName || !userType) {
+      return res.status(400).json(new ApiError(400, "Full Name and User Type are required"));
+    }
+
+    let imageUrl = ""; // Default to an empty string for the image URL
+
+    if (file) {
+      const localFilePath = file.path; // Path to the uploaded file on the server
+      // console.log("File uploaded:", localFilePath);
+
+      // Upload the image to Cloudinary
+      const uploadResult = await uploadOnCloudinary(localFilePath);
+      if (!uploadResult) {
+        return res.status(500).json(new ApiError(500, "Image upload failed on Cloudinary"));
+      }
+      imageUrl = uploadResult.secure_url;
+      // console.log("Cloudinary image URL:", imageUrl);
+    }
+
+    // Update the user in the database
+    const updatedUser = await User.findOneAndUpdate(
+      { email: req.user.email },
+      {
+        $set: {
+          fullName,
+          userType,
+          ...(imageUrl && { image: imageUrl }) // Add the image URL only if it exists
+        },
+      },
+      { new: true } // Return the updated document
+    ).select("-password");
+
+    if (!updatedUser) {
+      return res.status(404).json(new ApiError(404, "User not found"));
+    }
+
+    return res.status(202).json(
+      new ApiResponce(202, "User details updated successfully", updatedUser)
+    );
+  } catch (error) {
+    // console.error("Error in updating user profile:", error);
+    return res.status(500).json(new ApiError(500, "An error occurred", error.message));
+  }
+});
+
+
+const createMessage =asyncHandler(async (req,res)=>{
+  try {
+    const {fullName,email,content}=req.body;
+    console.log("input data",req.body);
+    if([fullName,email,content].some((field)=>field.trim==="")){
+      return res.status(400).json(new ApiError(200,"All fields required"));
+    }
+    
+    let userId="";
+    let user="";
+    if(req.user){
+      userId=req.user._id;
+    }else{
+      user=await User.findOne({email}).select("-password");
+      userId=user._id;
+    }
+    
+    const message=await Message.create({
+      content,
+      fullName,
+      email,
+      ...(userId && {owner:userId})
+    });
+    if(!message){
+      return res.status(505).json(new ApiError(505,"User not created"));
+    }
+    // console.log("message created",message);
+    if(user){
+      user.message=userId;
+      await user.save();
+    }
+    return res.status(200).json(new ApiResponce(200,"message created successfully"));
+
+
+  } catch (error) {
+    return res.status(400).json(new ApiError(400,error.message||"error in message creation",error));
+    
+  }
+})
+export { registerUser, loginUser,getUser,logoutUser,updateUserProfile,createMessage };

@@ -12,7 +12,7 @@ export default function Hero() {
       
       >
         <div className="container w-full h-[80%] mx-auto flex px-5 pt-8 md:pt-12 items-center justify-center flex-col md:flex-row-reverse md:gap-10">
-          <img className="lg:w-2/6 md:w-3/6 w-2/3 mb-10 object-cover object-center" alt="hero" src="../../Images/dandg_hero.png" style={{backgroundColor:"transparent"}} />
+          <img className="lg:w-2/6 md:w-3/6 w-2/3 mb-10 object-cover object-center" alt="hero" src="../../Images/dandg_hero.png" style={{backgroundColor:"transparent"}}  />
           <div className="text-center lg:w-5/12 w-full">
             <h1 className="my-4 text-3xl md:text-5xl font-bold font-heading leading-tight">
               Empowering Minds, Shaping Futures
@@ -22,7 +22,7 @@ export default function Hero() {
             </p>
             <div className="flex justify-center gap-16 mx-auto my-2">
               
-              <Button type="" content="Explore"  className="min-w-min px-3 py-1 text-lg font-semibold rounded-lg bg-yellow-400 hover:bg-yellow-500" onClick={()=>{} }/>
+              <Button type="" content="Explore"  className="min-w-min px-3 py-1 text-lg font-semibold rounded-lg bg-yellow-400 hover:bg-yellow-500" onClick={()=>document.getElementById("gallery").scrollIntoView({behavior:"smooth",offset:"-180px"}) }/>
               <Button type="" content="Register"  className="min-w-min px-3 py-1 text-lg font-semibold rounded-lg bg-yellow-400 hover:bg-yellow-500" onClick={()=>setShowLoginForm(true)} />
               
             </div>

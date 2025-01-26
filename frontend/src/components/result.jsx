@@ -31,7 +31,7 @@ export default function Result() {
       >
        <h2 className="font-heading font-semibold text-2xl text-center my-8">Our Students’ Success: Results That Speak for Themselves</h2>
        <div className="bg-red-400 w-full h-2/3 md:w-[80%] md:h-[80%] bg-contain mx-auto relative  ">
-         <img src={url} alt="result" className="w-full h-full"></img>
+         <img src={url} alt="result" className="w-full h-full" loading="lazy"></img>
          <Button type="button" content="<" className="absolute text-5xl font-semibold left-0 md:-left-10 lg:-left-16 top-[50%] hover:shadow-lg hover:shadow-blue-500 " onClick={()=>setIndex(index-1)} />
          <Button type="button" content=">" className="absolute text-5xl font-semibold right-0 md:-right-10 lg:-right-16 top-[50%] hover:shadow-lg hover:shadow-blue-500" onClick={()=>setIndex(index+1)} />
 

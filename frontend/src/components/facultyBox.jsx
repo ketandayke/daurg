@@ -36,7 +36,7 @@ export default function FacultyBox({
           <img src={imageSrc} alt={name} />
         </div>
         <h1 className="text-xl text-center font-medium font-heading">{name}</h1>
-        <p className="pl-4 text-lg font-body">Education: {education}</p>
+        <p className="pl-4  font-body"><strong> Education:</strong> {education}</p>
       </motion.div>
 
       {/* Back Side */}

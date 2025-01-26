@@ -17,7 +17,7 @@ export const verifyJwt = asyncHandler(async (req, res, next) => {
         return res.status(404).json(new ApiError(404, "User not found"));
       }
   
-      console.log("Verified User:", user);
+      // console.log("Verified User:", user);
       req.user = user;
       next();
     } catch (error) {

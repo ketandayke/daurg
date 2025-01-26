@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Button} from './index'
+import {Button,Loader} from './index'
 import { useToast } from './toastContext';
 import { useLoginForm } from './loginFormContext';
 import { useAuth } from './index';
@@ -11,6 +11,7 @@ export default function Login({className="",onClose}) {
   const [showForm1,setShowForm1] = useState(true);
   const [showForm2, setShowForm2] = useState(false)
   const {user,loading,setUser,setLoading} =useAuth();
+  const api_base_url=process.env.REACT_APP_API_URL
 
   const [formData,setFormData] = useState({
     fullName:"",
@@ -28,12 +29,15 @@ export default function Login({className="",onClose}) {
 
   const submitSignUpForm= async(e)=>{
     try {
+      setLoading(true);
+      {loading&& <Loader/>}
+
       const {fullName,email,password,userType}=formData;
       console.log("submit signup button clicked");
       if(!fullName||!email||!password||!userType){
         return showToast("All fields are required ","error");
       }
-      const responce=await fetch('http://localhost:8000/api/v1/users/register',{
+      const responce=await fetch(`${api_base_url}/users/register`,{
         method:'POST',
         headers:{'content-type':'application/json'},
         body:JSON.stringify({fullName,email,password,userType}),
@@ -43,16 +47,19 @@ export default function Login({className="",onClose}) {
       if(responce.ok){
         showToast("signup successfull","success");
         onClose();
+        setLoading(false);
         setShowLoginForm(true);
         setShowForm1(false);
         setShowForm2(true);
 
       }else{
         showToast(data.message||"user already exist","error");
+        setLoading(false);
       }
     } catch (error) {
       console.log("Error",error);
       showToast("An error occured ,please try again later","error");  
+      setLoading(false);
     }
 
   }
@@ -60,13 +67,15 @@ export default function Login({className="",onClose}) {
 
   const submitLoginForm = async (e) => {
     try {
+      setLoading(true);
+      {loading&& <Loader/>}
       const { email, password } = formData;
   
       if (!email || !password) {
         return showToast("All fields are required", "error");
       }
   
-      const response = await fetch("http://localhost:8000/api/v1/users/login", {
+      const response = await fetch(`${api_base_url}/users/login`, {
         method: "POST",
         headers: { "content-type": "application/json" },
         credentials: "include", // Include cookies with the request
@@ -79,13 +88,16 @@ export default function Login({className="",onClose}) {
         const user = data?.data?.user;
         showToast("Login successful", "success");
         setUser(user); // Save user in context
+        setLoading(false);
         onClose(); // Close the login modal
         
       } else {
         showToast(data.message || "Something went wrong", "error");
+        setLoading(false);
       }
     } catch (error) {
       showToast("An error occurred, please try again later", "error");
+      setLoading(false);
     }
   };
   

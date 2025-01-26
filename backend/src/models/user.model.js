@@ -29,6 +29,12 @@ const userSchema = new Schema(
             enum:["student","other"],
             required:true,
         },
+        messages:[
+            {
+                type:Schema.Types.ObjectId,
+                ref:"Message"
+            }
+        ],
         refreshToken:{
             type:String
         }

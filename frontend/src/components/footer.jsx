@@ -111,7 +111,7 @@ export default function Footer() {
                 href="/privacy-policy"
                 className="hover:text-gray-300 transition-colors"
               >
-                Privacy Policy
+                Privacy-Policy
               </a>
             </li>
             <li>
@@ -150,15 +150,15 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="/testimonials"
-                className="hover:text-gray-300 transition-colors"
+                href="#testimonials"
+                className="hover:text-gray-300 transition-colors "
               >
                 Testimonials
               </a>
             </li>
             <li>
               <a
-                href="/gallery"
+                href="#gallery"
                 className="hover:text-gray-300 transition-colors"
               >
                 Gallery
