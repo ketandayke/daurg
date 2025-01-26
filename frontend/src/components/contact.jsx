@@ -5,7 +5,7 @@ import { useAuth } from './index';
 export default function Contact() {
   const {showToast} = useToast();
   const {loading,setLoading}=useAuth();
-  const api_base_url=process.env.REACT_APP_API_URL
+  const api_base_url=import.meta.env.VITE_APP_API_URL
 
   const [formData,setFormData]=useState({
     fullName:"",

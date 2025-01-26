@@ -7,7 +7,7 @@ import {Loader} from "./index";
 export default function EditProfile() {
   const { user, setUser,fetchCurrentUser,loading,setLoading } = useAuth();
   const {showToast} = useToast();
-  const api_base_url=process.env.REACT_APP_API_URL
+  const api_base_url=import.meta.env.VITE_APP_API_URL
 
   const [formData, setFormData] = useState({
     image: null, // For file input, use null instead of an empty string
@@ -64,17 +64,17 @@ export default function EditProfile() {
         showToast("User details Updated Successfully","success");
         setLoading(false);
         await fetchCurrentUser();
-        console.log("User details updated successfully");
+        // console.log("User details updated successfully");
         // navigate("/");
         
       } else {
-        console.error("Failed to update profile:", result.message);
+        // console.error("Failed to update profile:", result.message);
         showToast("User details failed to update","error");
         setLoading(false);
 
       }
     } catch (error) {
-      console.error("Error updating profile:", error);
+      // console.error("Error updating profile:", error);
       setLoading(false);
     }
   };

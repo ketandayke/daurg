@@ -6,7 +6,7 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Loading state for initial authentication check
-  const api_base_url=process.env.REACT_APP_API_URL
+  const api_base_url=import.meta.env.VITE_APP_API_URL
 
   // Fetch the user data
   const fetchCurrentUser = async () => {

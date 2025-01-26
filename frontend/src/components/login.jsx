@@ -11,7 +11,7 @@ export default function Login({className="",onClose}) {
   const [showForm1,setShowForm1] = useState(true);
   const [showForm2, setShowForm2] = useState(false)
   const {user,loading,setUser,setLoading} =useAuth();
-  const api_base_url=process.env.REACT_APP_API_URL
+  const api_base_url=import.meta.env.VITE_APP_API_URL
 
   const [formData,setFormData] = useState({
     fullName:"",
