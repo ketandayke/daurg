@@ -1,22 +1,19 @@
-import {app} from "./app.js"
+import * as dotenv from 'dotenv'; // Updated import for ES modules
+dotenv.config(); // Ensure environment variables are loaded
+
+import { app } from "./app.js";
 import connectDB from "./db/index.js";
-import dotenv from "dotenv"
 
-dotenv.config({
-    path:'./env'
-})
 connectDB()
-.then(()=>{
-    app.on("error",(error)=>{
-        // console.log("Error ",error);
-        throw error;
-    })
-    app.listen(process.env.PORT,()=>{
-        // console.log("app is live on http://localhost:8000");
-    })
-
-})
-.catch((error)=>{
-    // console.log("Database connection failed ",error);
+  .then(() => {
+    app.on("error", (error) => {
+      throw error;
+    });
+    app.listen(process.env.PORT, () => {
+      console.log(`App is live on http://localhost:${process.env.PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Database connection failed", error);
     throw error;
-})
+  });
