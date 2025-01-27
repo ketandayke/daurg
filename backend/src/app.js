@@ -6,7 +6,7 @@ import userRouter from './routes/user.routes.js';
 // import { errorHandler } from './middelwares/errorHandler.js';
 
 app.use(cors({
-    origin:process.env.CORS_ORIGIN,
+    origin:[process.env.CORS_ORIGIN,'http://localhost:5173'],
     methods:["GET","POST","PUT","DELETE"],
     credentials:true,
 }));
