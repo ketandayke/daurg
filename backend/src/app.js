@@ -5,11 +5,13 @@ const app = express()
 import userRouter from './routes/user.routes.js';
 // import { errorHandler } from './middelwares/errorHandler.js';
 
-app.use(cors({
-    origin:[process.env.CORS_ORIGIN,'http://localhost:5173'],
-    methods:["GET","POST","PUT","DELETE"],
-    credentials:true,
-}));
+app.use(
+    cors({
+      origin: [process.env.CORS_ORIGIN, 'http://localhost:5173'], // Use the env variable
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      credentials: true,
+    })
+  );
 
 app.use(cookieParser());
 app.use(express.json({limit:"16kb"}));
