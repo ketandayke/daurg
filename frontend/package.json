@@ -4,11 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",                     
-    "build": "vite build",            
-    "preview": "vite preview",        
-    "start": "vite preview"           
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port $PORT --host 0.0.0.0",
+    "start": "vite preview --port $PORT --host 0.0.0.0"
   },
+  
   "dependencies": {
     "framer-motion": "^11.15.0",
     "multer": "^1.4.5-lts.1",
