@@ -1,4 +1,4 @@
-import * as dotenv from 'dotenv'; // Updated import for ES modules
+import dotenv from 'dotenv'; // Updated import for ES modules
 dotenv.config(); // Ensure environment variables are loaded
 
 import { app } from "./app.js";
