@@ -8,10 +8,10 @@ function App() {
   // Accessing the environment variable without using dotenv in the frontend
 
   return (
+    <Router>
     <AuthProvider>
       <ToastProvider>
         <LoginFormProvider>
-          <Router>
             {/* Navbar visible across all pages */}
             <Navbar />
 
@@ -42,10 +42,11 @@ function App() {
               <Route path="/previous-year-papers" element={<PYP />} />
               <Route path="/youtube-playlist" element={<Youtube />} />
             </Routes>
-          </Router>
         </LoginFormProvider>
       </ToastProvider>
     </AuthProvider>
+    </Router>
+
   );
 };
 

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function UserProfile() {
   const [showUserProfile, setShowUserProfile] = useState(false);
   const { user, setUser } = useAuth();
-  const api_base_url=process.env.REACT_APP_API_URL
+  const api_base_url=import.meta.env.VITE_APP_API_URL
   const navigate = useNavigate(); // Hook for navigation
 
   

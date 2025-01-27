@@ -68,7 +68,7 @@ export default function Navbar() {
             }`}
           >
             <li>
-              <Link smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer"
+              <Link to="/" smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer"
                onClick={()=>navigate("/")} >
                 Home
               </Link>

@@ -51,13 +51,13 @@ export default function Contact() {
   }
   return (   
     <div
-      className="w-full flex flex-col sm:flex-row px-6 sm:px-12 md:px-20 gap-8 bg-gray-100"
+      className="w-full min-h-min flex flex-col sm:flex-row px-6 sm:px-12 md:px-20 gap-8 bg-gray-100"
       style={{ height: "calc(100vh - 5rem)" }}
     >
       {/* Form Section */}
       <form
         onSubmit={submitForm}
-        className="flex flex-col gap-5 sm:w-1/4 lg:w-1/3 mx-4 py-6 bg-white rounded-b-lg shadow-md p-6"
+        className="flex flex-col gap-5 sm:w-1/2 lg:w-1/3  p-6 bg-white rounded-b-lg shadow-md "
       >
         {/* Name Input */}
         <div>
@@ -116,10 +116,10 @@ export default function Contact() {
       </form>
 
       {/* Contact Section */}
-      <div className="flex flex-col gap-6 sm:w-1/3 lg:w-1/2">
+      <div className="flex flex-col gap-6 sm:w-1/3 lg:w-1/2 my-6">
         {/* Contact Info */}
         <p className="text-lg  text-gray-700"><strong>Email:</strong> dandgacademy@gmail.com 
-          <p className="ml-12">support.dandg@gmail.com</p>
+          <p className="lg:ml-12">support.dandg@gmail.com</p>
         
 
         </p>
