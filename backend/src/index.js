@@ -1,6 +1,6 @@
-import dotenv from 'dotenv'; // Updated import for ES modules
-dotenv.config(); // Ensure environment variables are loaded
-
+if (process.env.NODE_ENV !== "production") {
+  import("dotenv").then((dotenv) => dotenv.config());
+}
 import { app } from "./app.js";
 import connectDB from "./db/index.js";
 
