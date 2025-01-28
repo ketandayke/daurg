@@ -5,7 +5,7 @@ import { useToast } from './toastContext';
 import { useNavigate } from "react-router-dom";
 import {Loader} from "./index";
 export default function EditProfile() {
-  const { user, setUser,fetchCurrentUser,loading,setLoading } = useAuth();
+  const { user, setUser,fetchCurrentUser,} = useAuth();
   const {showToast} = useToast();
   const api_base_url=import.meta.env.VITE_APP_API_URL
 
@@ -62,7 +62,7 @@ export default function EditProfile() {
       if (response.ok) {
         setUser(result);
         showToast("User details Updated Successfully","success");
-        setLoading(false);
+        // setLoading(false);
         await fetchCurrentUser();
         // console.log("User details updated successfully");
         // navigate("/");
@@ -70,18 +70,18 @@ export default function EditProfile() {
       } else {
         // console.error("Failed to update profile:", result.message);
         showToast("User details failed to update","error");
-        setLoading(false);
+        // setLoading(false);
 
       }
     } catch (error) {
-      // console.error("Error updating profile:", error);
-      setLoading(false);
+      console.error("Error updating profile:", error);
+      // setLoading(false);
     }
   };
 
-  if (!user) {
-    return <Loader/>
-  }
+  // if (!user) {
+  //   return <Loader/>
+  // }
 
   return (
     <div className="max-w-md  mx-auto pt-8 px-4"

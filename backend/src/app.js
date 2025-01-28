@@ -4,7 +4,6 @@ import cors from 'cors'
 const app = express()
 import userRouter from './routes/user.routes.js';
 import { errorHandler } from './middelwares/errorHandler.js';
-// import { errorHandler } from './middelwares/errorHandler.js';
 
 app.use(
     cors({
@@ -19,7 +18,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 app.use("/api/v1/users",userRouter);
-app.use(errorHandler)
+app.use(errorHandler);
 
 
 export {app}
