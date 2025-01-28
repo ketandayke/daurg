@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
       console.error("Error verifying user:", error);
       setUser(null);
     } finally {
-      // setLoading(false); // Authentication check complete
+      setLoading(false); // Authentication check complete
     }
   },[api_base_url]) ;
 
