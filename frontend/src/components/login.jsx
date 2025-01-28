@@ -26,12 +26,13 @@ export default function Login({className="",onClose}) {
 
   }
  
-
+  
   const submitSignUpForm= async(e)=>{
     try {
       setLoading(true);
+      console.log("this is loading",loading,<Loader/>)
       {loading&& <Loader/>}
-
+      
       const {fullName,email,password,userType}=formData;
       console.log("submit signup button clicked");
       if(!fullName||!email||!password||!userType){
@@ -43,7 +44,7 @@ export default function Login({className="",onClose}) {
         body:JSON.stringify({fullName,email,password,userType}),
       });
       const data=await responce.json();
-      console.log("this id data",data);
+      // console.log("this id data",data);
       if(responce.ok){
         showToast("signup successfull","success");
         onClose();
@@ -83,16 +84,17 @@ export default function Login({className="",onClose}) {
       });
   
       const data = await response.json();
-  
+      console.log("this is data",data);
       if (response.ok) {
         const user = data?.data?.user;
         showToast("Login successful", "success");
         setUser(user); // Save user in context
+        // console.log("this is user",user);
         setLoading(false);
         onClose(); // Close the login modal
         
       } else {
-        showToast(data.message || "Something went wrong", "error");
+        showToast(data.message || "Something went wrong");
         setLoading(false);
       }
     } catch (error) {

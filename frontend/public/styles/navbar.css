@@ -201,7 +201,7 @@
 }
 
 .loader {
-  animation: loading 2s infinite ease-in;
+  animation: loading 400ms infinite ease-in;
 }
 
 @keyframes loading {

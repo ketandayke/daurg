@@ -12,10 +12,10 @@ export default function UserProfile() {
   
   const handleToggleProfile = () => {
     setShowUserProfile((prev) => !prev);
-    console.log("this is user to be updated",user);
+    // console.log("this is user to be updated",user);
     
 
-    setUser(user);
+    // setUser(user);
   };
   // console.log("this is user currently",user);
 

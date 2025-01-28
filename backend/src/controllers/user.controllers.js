@@ -28,7 +28,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const { fullName, email, password, userType } = req.body;
 
   if ([fullName, email, password, userType].some((field) => !field || field.trim() === "")) {
-    return res.status(400).json(new ApiError(400, "All fields are required"));
+    throw new ApiError(400, "All fields are required")
   }
 
   const existingUser = await User.findOne({ email });
@@ -51,19 +51,21 @@ const registerUser = asyncHandler(async (req, res) => {
 // Login User
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+  console.log("this is request of login",req.body);
 
   if ([email, password].some((field) => !field || field.trim() === "")) {
-    return res.status(400).json(new ApiError(400, "All fields are required"));
+      throw new ApiError(400, "All fields are required")
   }
 
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(404).json(new ApiError(404, "User does not exist! Please sign up"));
+    // return res.status(401).json(new ApiError(401,"User does not exist! Please sign up"));
+    throw new ApiError(401,"user does not exist plesase signup");
   }
 
   const isPasswordValid = await user.isPasswordCorrect(password);
   if (!isPasswordValid) {
-    return res.status(401).json(new ApiError(401, "Invalid email or password"));
+    throw new ApiError(401, "Invalid email or password")
   }
 
   const { accessToken, refreshToken } = await generateAccessAndRefreshTokens(user._id);
@@ -77,7 +79,7 @@ const loginUser = asyncHandler(async (req, res) => {
     sameSite: isProduction ? "strict" : "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   };
-  console.log("this is user logged in ",loggedInUser);
+  // console.log("this is user logged in ",loggedInUser);
   return res
     .status(200)
     .cookie("refreshToken", refreshToken, cookieOptions)
@@ -98,13 +100,13 @@ const getUser = asyncHandler(async (req, res) => {
     // console.log("this is  request",req);
     // console.log("this is user getted form request",user);
     if (!user) {
-      return res.status(404).json(new ApiError(404, "User not found"));
-    }
+          throw new ApiError(404, "User not found") 
+           }
 
-    // console.log("Fetched User:", user);
+    console.log("Fetched User:", user);
     return res.status(200).json(new ApiResponce(200, "User found",user));
   } catch (error) {
-    // console.error("Error in getUser:", error);
+    console.error("Error in getUser:", error);
     return res.status(500).json(new ApiError(500, "An error occurred", error));
   }
 });

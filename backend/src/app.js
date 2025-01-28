@@ -3,12 +3,12 @@ import cookieParser from 'cookie-parser'
 import cors from 'cors'
 const app = express()
 import userRouter from './routes/user.routes.js';
+import { errorHandler } from './middelwares/errorHandler.js';
 // import { errorHandler } from './middelwares/errorHandler.js';
 
 app.use(
     cors({
       origin: [process.env.CORS_ORIGIN, 'http://localhost:5173'], // Use the env variable
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
       credentials: true,
     })
   );
@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static("public"));
 
 app.use("/api/v1/users",userRouter);
-// app.use(errorHandler)
+app.use(errorHandler)
 
 
 export {app}

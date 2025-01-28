@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState, useEffect,useCallback } from "react";
 import { useLocation } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -8,20 +8,20 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true); // Loading state for initial authentication check
   // const location=useLocation();
-  const api_base_url=import.meta.env.VITE_APP_API_URL
+  const api_base_url=import.meta.env.VITE_APP_API_URL;
 
   // Fetch the user data
-  const fetchCurrentUser = async () => {
+  const fetchCurrentUser = useCallback(async () => {
     try {
-      console.log("Fetching current user...");
+      // console.log("Fetching current user...");
       const response = await fetch(`${api_base_url}/users/me`, {
         method: "GET",
         credentials: "include", // Sends cookies with the request
       });
-
+      
       if (response.ok) {
         const data = await response.json();
-        console.log("User data fetched:", data);
+        // console.log("User data fetched:", data);
         setUser(data.data); // Set the authenticated user
       } else {
         setUser(null); // No user logged in
@@ -30,9 +30,9 @@ export function AuthProvider({ children }) {
       console.error("Error verifying user:", error);
       setUser(null);
     } finally {
-      setLoading(false); // Authentication check complete
+      // setLoading(false); // Authentication check complete
     }
-  };
+  },[api_base_url]) ;
 
  
   return (
