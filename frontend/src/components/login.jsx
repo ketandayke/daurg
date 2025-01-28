@@ -29,9 +29,9 @@ export default function Login({className="",onClose}) {
   
   const submitSignUpForm= async(e)=>{
     try {
-      setLoading(true);
-      console.log("this is loading",loading,<Loader/>)
-      {loading&& <Loader/>}
+      // setLoading(true);
+      // console.log("this is loading",loading,<Loader/>)
+      // {loading&& <Loader/>}
       
       const {fullName,email,password,userType}=formData;
       console.log("submit signup button clicked");
@@ -48,14 +48,14 @@ export default function Login({className="",onClose}) {
       if(responce.ok){
         showToast("signup successfull","success");
         onClose();
-        setLoading(false);
+        // setLoading(false);
         setShowLoginForm(true);
         setShowForm1(false);
         setShowForm2(true);
 
       }else{
         showToast(data.message||"user already exist","error");
-        setLoading(false);
+        // setLoading(false);
       }
     } catch (error) {
       console.log("Error",error);

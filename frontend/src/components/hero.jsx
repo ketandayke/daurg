@@ -6,9 +6,9 @@ import { useAuth } from './index';
 export default function Hero() {
   const {setShowLoginForm} =useLoginForm();
   const{loading,setLoading}=useAuth();
-  setLoading(true);
-      console.log("this is loading",loading,<Loader/>)
-      {loading&& <Loader/>}
+  // setLoading(true);
+  //     console.log("this is loading",loading,<Loader/>)
+  //     {loading&& <Loader/>}
   return (
     <div id="home" className="max-w-screen h-screen text-white" style={{
         background: "linear-gradient(90deg, rgba(131, 126, 226, 1) 24%, rgba(114, 114, 226, 1) 40%, rgba(0, 212, 255, 1) 100%) "

@@ -31,7 +31,7 @@ export default function Centers() {
 
       
       <div className="w-[90%] h-full sm:w-1/2 flex justify-center ">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d473706.24678898416!2d77.61881538906253!3d21.9410839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd5ec46f7b0b8af%3A0xef5e4ac460e113a1!2zRCZHIOCkj-CkleClh-CkoeCkruClgA!5e0!3m2!1sen!2sin!4v1737698395615!5m2!1sen!2sin" width="500" height="300" style={{border:"0"}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d473706.24678898416!2d77.61881538906253!3d21.9410839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd5ec46f7b0b8af%3A0xef5e4ac460e113a1!2zRCZHIOCkj-CkleClh-CkoeCkruClgA!5e0!3m2!1sen!2sin!4v1737698395615!5m2!1sen!2sin" width="500" height="300" style={{border:"0"}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
       title="D&G Academy Location"
       className="w-full h-full"
       ></iframe>

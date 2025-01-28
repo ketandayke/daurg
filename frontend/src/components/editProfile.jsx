@@ -40,8 +40,8 @@ export default function EditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-     setLoading(true);
-     {loading&& <Loader/>}
+    //  setLoading(true);
+    //  {loading&& <Loader/>}
      // FormData for handling file upload
     const data = new FormData();
     data.append("fullName", formData.fullName);
