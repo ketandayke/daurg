@@ -97,7 +97,7 @@ const loginUser = asyncHandler(async (req, res) => {
 const getUser = asyncHandler(async (req, res) => {
   try {
     const user = req.user;
-    // console.log("this is  request",req);
+    console.log("this is  request",req);
     // console.log("this is user getted form request",user);
     if (!user) {
           throw new ApiError(404, "User not found") 

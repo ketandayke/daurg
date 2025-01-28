@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
         method: "GET",
         credentials: "include", // Sends cookies with the request
       });
-      
+      console.log("heeting fetchcurrentuser function");
       if (response.ok) {
         const data = await response.json();
         // console.log("User data fetched:", data);
