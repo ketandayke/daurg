@@ -111,30 +111,26 @@ const getUser = asyncHandler(async (req, res) => {
   }
 });
 
-const logoutUser =asyncHandler(async(req,res)=>{
-  
-      await User.findByIdAndUpdate(req.user._id,
-      {
-        $set:{
-          refreshToken:null,
-         }
-    },
-      {
-        new:false,
-      }
-     )
-     const isProduction = process.env.NODE_ENV === "production";
-     const options={
-      httpOnly:true,
-      secure:isProduction,
-      sameSite:isProduction? "None":"Lax"
-     }
-     return res.status(202)
-     .clearCookie("accessToken",options)
-     .clearCookie("accessToken",options)
-     .json(new ApiResponce(202,"user logout Successfully",""));
+const logoutUser = asyncHandler(async (req, res) => {
+  // Clear refreshToken from database
+  await User.findByIdAndUpdate(req.user._id, {
+      $set: { refreshToken: null }
+  }, { new: false });
 
-  
+  // Define cookie options
+  const isProduction = process.env.NODE_ENV === "production";
+  const options = {
+      httpOnly: true,
+      secure: isProduction,
+      sameSite: isProduction ? "None" : "Lax" // Important for cross-origin cookies
+  };
+
+  // Clear cookies properly
+  res.clearCookie("accessToken", options);
+  res.clearCookie("refreshToken", options);
+
+  // Send response
+  return res.status(202).json(new ApiResponce(202, "User logged out successfully", ""));
 });
 
 

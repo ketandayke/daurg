@@ -10,7 +10,7 @@ connectDB()
       throw error;
     });
     app.listen(process.env.PORT, () => {
-      console.log(`App is live on http://localhost:${process.env.PORT}`);
+      console.log(`App is live on ${process.env.CORS_ORIGIN}${process.env.PORT}`);
     });
   })
   .catch((error) => {

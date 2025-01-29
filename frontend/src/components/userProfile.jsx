@@ -21,22 +21,23 @@ export default function UserProfile() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(`${api_base_url}/users/logout`, {
-        method: "POST",
-        credentials: "include", // Include cookies if applicable
-      });
+        const response = await fetch(`${api_base_url}/users/logout`, {
+            method: "POST",
+            credentials: "include", // Send cookies with the request
+        });
 
-      if (response.ok) {
-        setUser(null); // Clear the user state
-        // navigate("/login"); // Redirect to the login page
-      } else {
-        const errorData = await response.json();
-        // console.error("Logout failed:", errorData.message);
-      }
+        if (response.ok) {
+            setUser(null); // Clear React state
+            window.location.reload(); // Force a reload to clear auth state
+        } else {
+            const errorData = await response.json();
+            console.error("Logout failed:", errorData.message);
+        }
     } catch (error) {
-      // console.error("Error during logout:", error);
+        console.error("Error during logout:", error);
     }
-  };
+};
+
 
   return (
     <div className="relative">
