@@ -105,7 +105,7 @@ export default function Login({className="",onClose}) {
   
   
   return (
-    <div className={`w-72 sm:w-80 md:w-96 h-[500px] p-4 sm:p-8 bg-slate-200 text-black rounded-lg relative ${className}`}>
+    <div className={`w-[18rem] sm:w-80 md:w-96 h-[32rem] p-4 sm:p-8 bg-slate-200 text-black rounded-lg relative ${className}`}>
       <div className="flex gap-10 mb-8 relative">
         <Button type="" 
                 content="SignUp" 
@@ -139,7 +139,7 @@ export default function Login({className="",onClose}) {
               e.preventDefault();
               submitSignUpForm();
               
-              }} className="gap-6 flex flex-col">
+              }} className="gap-5 flex flex-col">
               <div>
                 <label htmlFor="input-email"className="text-lg font-semibold"  >Full Name</label>
                 <input  id="input-fullName"
@@ -148,7 +148,9 @@ export default function Login({className="",onClose}) {
                         name="fullName" 
                         value={formData.fullName}
                         onChange={handleFormSubmit}
-                        className="w-full bg-slate-300 rounded-sm px-2 py-1 outline-none" >
+                        // className="w-full bg-slate-300 rounded-sm px-2 py-1 outline-none" 
+                        className="outline-none rounded-md bg-gray-50 px-4 py-2 w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-300"
+                        >
                 
                 </input>
               </div>
@@ -160,7 +162,9 @@ export default function Login({className="",onClose}) {
                         name="email" 
                         value={formData.email}
                         onChange={handleFormSubmit}
-                        className="w-full bg-slate-300 rounded-sm px-2 py-1 outline-none" >
+                        // className="w-full bg-slate-300 rounded-sm px-2 py-1 outline-none"
+                        className="outline-none rounded-md bg-gray-50 px-4 py-2 w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-300"
+                         >
                 
                 </input>
               </div>
@@ -173,7 +177,9 @@ export default function Login({className="",onClose}) {
                        name="password" 
                        value={formData.password}
                        onChange={handleFormSubmit} 
-                       className="w-full bg-slate-300 rounded-sm outline-none px-2 py-1 ">
+                      //  className="w-full bg-slate-300 rounded-sm outline-none px-2 py-1 "
+                      className="outline-none rounded-md bg-gray-50 px-4 py-2 w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-300"
+                       >
   
                 </input>
               </div>
@@ -182,7 +188,8 @@ export default function Login({className="",onClose}) {
                 <select name="userType"
                         onChange={handleFormSubmit}
                         value={formData.userType}
-                        className="rounded-sm outline-none px-2 py-1"
+                        // className="rounded-sm outline-none px-2 py-1"
+                        className="outline-none rounded-md bg-gray-50 px-4 py-2 w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-300"
                   >
                   <option value="">select user type</option>
                   <option value="student">Student</option>
@@ -215,7 +222,9 @@ export default function Login({className="",onClose}) {
                         name="email" 
                         value={formData.email}
                         onChange={handleFormSubmit}
-                        className="w-full bg-slate-300 rounded-sm px-2 py-1 outline-none" >
+                        // className="w-full bg-slate-300 rounded-sm px-2 py-1 outline-none"
+                        className="outline-none rounded-md bg-gray-50 px-4 py-2 w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-300"
+                         >
                 
                 </input>
               </div>
@@ -228,7 +237,9 @@ export default function Login({className="",onClose}) {
                        name="password" 
                        value={formData.password}
                        onChange={handleFormSubmit} 
-                       className="w-full bg-slate-300 rounded-sm outline-none px-2 py-1 ">
+                      //  className="w-full bg-slate-300 rounded-sm outline-none px-2 py-1 "
+                      className="outline-none rounded-md bg-gray-50 px-4 py-2 w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-300"
+                       >
   
                 </input>
               </div>

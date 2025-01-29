@@ -53,9 +53,9 @@ export default function Footer() {
       </div>
 
 
-      <div className="px-2 sm:px-6 md:px-12 lg:px-20 py-2 mt-9 bg-blue-500 flex flex-col  justify-center md:flex-row text-white">
-        <div className="md:w-1/2 flex md:flex-col gap-2 ">
-          <div className="flex flex-col md:flex-row items-center  gap-2">
+      <div className="w-full min-h-min bg-gradient-to-r from-blue-500 to-blue-600 text-white mt-6 pt-2">
+        <div className="mx-4 sm:mx-6 md:mx-12 lg:mx-20 flex gap-2 sm:gap-10 ">
+          <div className="flex flex-col gap-2">
             <img
               src="../../Images/dandg_logo.png"
               alt="logo"
@@ -63,7 +63,7 @@ export default function Footer() {
             ></img>
             <h2 className="font-heading text-center font-semibold text-sm ">D&G Academy</h2>
           </div>
-          <div className="text-sm md:text-base  ">
+          <div className="text-sm sm:text-base gap-2">
               <p className="font-body font-medium">Contact Number: 8305868010</p>
               <p className="font-body font-medium">Email:d&gacademy@gmail.com</p>
               <p className="font-body font-medium">
@@ -73,9 +73,9 @@ export default function Footer() {
           </div>
           
         </div>
-        <div className="flex justify-between gap-2 md:gap-10 md:w-1/2 font-medium font-body text-white">
+        <div className="flex flex-wrap gap-2 lg:gap-20 mx-4 sm:mx-6 md:mx-12 lg:mx-20  md:gap-10 mt-4 font-medium font-body text-white">
           {/* Academy Section */}
-          <ul className="gap-3">
+          <ul className="w-28">
             <li className="md:text-lg  font-semibold">Academy</li>
             <li>
               <a
@@ -104,7 +104,7 @@ export default function Footer() {
           </ul>
 
           {/* Terms & Conditions Section */}
-          <ul>
+          <ul className="w-36">
             <li className="md:text-lg font-semibold">T&C</li>
             <li>
               <a
@@ -130,7 +130,7 @@ export default function Footer() {
           </ul>
 
           {/* Support and Resources Section */}
-          <ul>
+          <ul className="w-60">
             <li className="md:text-lg font-semibold">Support And Resources</li>
             <li>
               <a

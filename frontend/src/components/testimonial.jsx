@@ -4,7 +4,7 @@ import {ReviewBox,Button} from './index'
 
 export default function Testimonial() {
   return (
-    <div id="testimonials" className="w-full relative h-[24rem]">
+    <div id="testimonials" className="w-full relative h-[24rem] mt-8">
       <h2 className="font-heading text-2xl font-semibold text-center my-8">What Our Students and Parents Say</h2>
       <div className="w-[90%] grid md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center mx-auto ">
        <ReviewBox 

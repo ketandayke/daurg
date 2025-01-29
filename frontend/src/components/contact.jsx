@@ -41,13 +41,13 @@ export default function Contact() {
 
   return (
     <div
-      className="w-full min-h-min flex flex-col sm:flex-row px-6 sm:px-12 md:px-20 gap-8 bg-gray-100"
+      className="w-full min-h-min flex flex-col sm:flex-row px-5 sm:px-12 md:px-20 gap-8 bg-gray-100"
       style={{ height: 'calc(100vh - 5rem)' }}
     >
       {/* Form Section */}
       <form
         onSubmit={submitForm}
-        className="flex flex-col gap-5 sm:w-1/2 lg:w-1/3  p-6 bg-white rounded-b-lg shadow-md "
+        className="flex flex-col gap-5 max-h-max sm:w-1/2 lg:w-1/3  p-6 bg-white rounded-b-lg shadow-md "
       >
         <div>
           <label className="text-lg font-medium mb-1" htmlFor="fullName">

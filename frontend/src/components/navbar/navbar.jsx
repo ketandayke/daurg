@@ -41,12 +41,12 @@ export default function Navbar() {
           isScrolled ? "bg-gradient-to-r from-blue-500 to-blue-600" : "bg-custom-gradient"
         } sticky top-0 z-40`}
       >
-        <div className="flex justify-between items-center gap-8 mx-7 sm:mx-12 md:mx-24 my-auto">
+        <div className="flex justify-between items-center gap-4 mx-7 sm:mx-12 md:mx-24 ">
           <a href="#home">
             <img
               src="../../Images/dandg_logo.png"
               alt="D&G Logo"
-              className="w-20 h-[90%] my-auto"
+              className="w-16 h-16 sm:w-20 sm:h-20"
             />
           </a>
           <div className="profile gap-2 lg:gap-8">
@@ -63,7 +63,7 @@ export default function Navbar() {
               )}
            </div>
           <ul
-            className={`flex-nowrap text-white font-bold gap-6 lg:gap-10 ${
+            className={` text-white font-bold gap-6 lg:gap-10 ${
               isMobile ? "nav-links-mobile" : "nav-links"
             }`}
           >
