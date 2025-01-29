@@ -116,7 +116,7 @@ const logoutUser =asyncHandler(async(req,res)=>{
       await User.findByIdAndUpdate(req.user._id,
       {
         $set:{
-          refreshToken:undefined,
+          refreshToken:null,
          }
     },
       {
@@ -126,11 +126,12 @@ const logoutUser =asyncHandler(async(req,res)=>{
      const isProduction = process.env.NODE_ENV === "production";
      const options={
       httpOnly:true,
-      secure:isProduction
+      secure:isProduction,
+      sameSite:isProduction? "None":"Lax"
      }
      return res.status(202)
-     .clearCookie("accessToken",req.accessToken,options)
-     .clearCookie("accessToken",req.user.refreshToken,options)
+     .clearCookie("accessToken",options)
+     .clearCookie("accessToken",options)
      .json(new ApiResponce(202,"user logout Successfully",""));
 
   
