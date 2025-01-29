@@ -76,7 +76,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const cookieOptions = {
     httpOnly: true,
     secure: isProduction,
-    sameSite: isProduction ? "strict" : "lax",
+    sameSite: isProduction ? "None" : "lax",
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   };
   // console.log("this is user logged in ",loggedInUser);
@@ -98,7 +98,7 @@ const getUser = asyncHandler(async (req, res) => {
   try {
     const user = req.user;
     console.log("this is  request",req);
-    // console.log("this is user getted form request",user);
+    console.log("this is user getted form request",user);
     if (!user) {
           throw new ApiError(404, "User not found") 
            }
