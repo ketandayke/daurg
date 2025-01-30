@@ -1,25 +1,37 @@
 import{v2 as cloudinary} from "cloudinary"
-import fs from "fs"
+import pkg from "cloudinary"; 
+const cloudinary = pkg.v2; // ✅ Correct way to import in ESM
 
 cloudinary.config({
-    cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
-    api_key:process.env.CLOUDINARY_API_KEY,
-    api_secret:process.env.CLOUDINARY_API_SECRET
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+export default cloudinary;
+
+
+// import fs from "fs"
+
+// cloudinary.config({
+//     cloud_name:process.env.CLOUDINARY_CLOUD_NAME,
+//     api_key:process.env.CLOUDINARY_API_KEY,
+//     api_secret:process.env.CLOUDINARY_API_SECRET
     
-})
+// })
 
-const uploadOnCloudinary= async(localfilepath)=>{
-    try {
-        if(!localfilepath) return null;
-        const response =await cloudinary.uploader.upload(localfilepath,{
-            resource_type:"auto"
-        });
-        fs.unlinkSync(localfilepath);
-        return response;
-    } catch (error) {
-        fs.unlinkSync(localfilepath);
-        return null;
-    }
-}
+// const uploadOnCloudinary= async(localfilepath)=>{
+//     try {
+//         if(!localfilepath) return null;
+//         const response =await cloudinary.uploader.upload(localfilepath,{
+//             resource_type:"auto"
+//         });
+//         fs.unlinkSync(localfilepath);
+//         return response;
+//     } catch (error) {
+//         fs.unlinkSync(localfilepath);
+//         return null;
+//     }
+// }
 
-export {uploadOnCloudinary}
+// export {uploadOnCloudinary}
