@@ -137,57 +137,38 @@ const logoutUser = asyncHandler(async (req, res) => {
 const updateUserProfile = asyncHandler(async (req, res) => {
   try {
     const { fullName, userType } = req.body;
-    const file = req.file; // Access the uploaded file
 
     if (!fullName || !userType) {
       return res.status(400).json(new ApiError(400, "Full Name and User Type are required"));
     }
 
-    let imageUrl = ""; // Default to an empty string for the image URL
-    if(file){
-      imageUrl=file.path;
+    let imageUrl = ""; // Default image URL
+
+    if (req.file) { // Cloudinary automatically uploads the file
+      imageUrl = req.file.path; // ✅ Cloudinary returns the image URL
     }
 
-    // if (file) {
-    //   // const localFilePath = file.path; // Path to the uploaded file on the server
-    //   // // console.log("File uploaded:", localFilePath);
-
-    //   // // Upload the image to Cloudinary
-    //   // const uploadResult = await uploadOnCloudinary(localFilePath);
-    //   // if (!uploadResult) {
-    //   //   return res.status(500).json(new ApiError(500, "Image upload failed on Cloudinary"));
-    //   // }
-    //   // imageUrl = uploadResult.secure_url;
-    //   // console.log("Cloudinary image URL:", imageUrl);
-
-    // }
-
-    // Update the user in the database
     const updatedUser = await User.findOneAndUpdate(
       { email: req.user.email },
       {
         $set: {
           fullName,
           userType,
-          ...(imageUrl && { image: imageUrl }) // Add the image URL only if it exists
+          ...(imageUrl && { image: imageUrl }) // ✅ Only update image if provided
         },
       },
-      { new: true } // Return the updated document
+      { new: true }
     ).select("-password");
 
     if (!updatedUser) {
       return res.status(404).json(new ApiError(404, "User not found"));
     }
 
-    return res.status(202).json(
-      new ApiResponce(202, "User details updated successfully", updatedUser)
-    );
+    return res.status(202).json(new ApiResponce(202, "User details updated successfully", updatedUser));
   } catch (error) {
-    // console.error("Error in updating user profile:", error);
     return res.status(500).json(new ApiError(500, "An error occurred", error.message));
   }
 });
-
 
 const createMessage =asyncHandler(async (req,res)=>{
   try {

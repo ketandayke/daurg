@@ -1,4 +1,4 @@
-import{v2 as cloudinary} from "cloudinary"
+
 import pkg from "cloudinary"; 
 const cloudinary = pkg.v2; // ✅ Correct way to import in ESM
 
@@ -11,6 +11,7 @@ cloudinary.config({
 export default cloudinary;
 
 
+// import{v2 as cloudinary} from "cloudinary"
 // import fs from "fs"
 
 // cloudinary.config({
