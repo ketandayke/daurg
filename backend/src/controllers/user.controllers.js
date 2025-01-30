@@ -144,19 +144,23 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     }
 
     let imageUrl = ""; // Default to an empty string for the image URL
-
-    if (file) {
-      const localFilePath = file.path; // Path to the uploaded file on the server
-      // console.log("File uploaded:", localFilePath);
-
-      // Upload the image to Cloudinary
-      const uploadResult = await uploadOnCloudinary(localFilePath);
-      if (!uploadResult) {
-        return res.status(500).json(new ApiError(500, "Image upload failed on Cloudinary"));
-      }
-      imageUrl = uploadResult.secure_url;
-      // console.log("Cloudinary image URL:", imageUrl);
+    if(file){
+      imageUrl=file.path;
     }
+
+    // if (file) {
+    //   // const localFilePath = file.path; // Path to the uploaded file on the server
+    //   // // console.log("File uploaded:", localFilePath);
+
+    //   // // Upload the image to Cloudinary
+    //   // const uploadResult = await uploadOnCloudinary(localFilePath);
+    //   // if (!uploadResult) {
+    //   //   return res.status(500).json(new ApiError(500, "Image upload failed on Cloudinary"));
+    //   // }
+    //   // imageUrl = uploadResult.secure_url;
+    //   // console.log("Cloudinary image URL:", imageUrl);
+
+    // }
 
     // Update the user in the database
     const updatedUser = await User.findOneAndUpdate(
