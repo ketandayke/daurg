@@ -26,7 +26,7 @@ export default function Hero() {
             <p className="text-lg md:text-2xl font-body sm:mb-8">
               Your Pathway to Excellence in Schooling and Coaching at D&G Academy
             </p>
-            <div className="flex justify-center gap-16 mx-auto my-2">
+            <div className="flex justify-center text-black gap-16 mx-auto my-2">
               
               <Button type="" content="Explore"  className="min-w-min px-3 py-1 text-lg font-semibold rounded-lg bg-yellow-400 hover:bg-yellow-500" onClick={()=>document.getElementById("gallery").scrollIntoView({behavior:"smooth",offset:"-180px"}) }/>
               <Button type="" content="Register"  className="min-w-min px-3 py-1 text-lg font-semibold rounded-lg bg-yellow-400 hover:bg-yellow-500" onClick={()=>setShowLoginForm(true)} />

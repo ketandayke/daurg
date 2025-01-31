@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponce } from "../utils/ApiResponce.js";
 import { User } from "../models/user.model.js";
 import { Message } from "../models/message.model.js";
+import { email_Sender } from "../utils/emailSender.js";
 // import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 // Utility to generate tokens
@@ -23,6 +24,21 @@ const generateAccessAndRefreshTokens = async (userId) => {
   return { accessToken, refreshToken };
 };
 
+const passwordGenerator=()=>{
+   let num="1234567890";
+   let alpha="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   let char="@#$*";
+   let str=num+alpha+char;
+   let password="";
+   for(let i=0;i<8;i++){
+     let ind=Math.floor(Math.random()*str.length);
+     password+=str[ind];
+
+   }
+   return password;
+   
+}
+
 // Register User
 const registerUser = asyncHandler(async (req, res) => {
   const { fullName, email, password, userType } = req.body;
@@ -33,15 +49,22 @@ const registerUser = asyncHandler(async (req, res) => {
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return res.status(409).json(new ApiError(409, "User already exists"));
+     throw new ApiError(409, "User already exists");
   }
-
+  
+  const pass=password;
   const user = await User.create({ fullName, email, password, userType });
   const createdUser = await User.findById(user._id).select("-password");
 
   if (!createdUser) {
     return res.status(500).json(new ApiError(500, "User registration failed due to server issues"));
   }
+   
+  console.log("user created successfully",createdUser);
+  email_Sender({
+    userEmail:createdUser.email,
+    subject:"no reply your account details",
+    text: `WELCOME TO D&G ACADEMY ${user.fullName}\n\nYour account has been created.\n\nEmail: ${user.email}\nPassword: ${newPassword}\n\nPlease change your password after logging in.`  });
 
   return res.status(201).json(
     new ApiResponce(201, "User registered successfully", createdUser)
@@ -170,43 +193,60 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-const createMessage =asyncHandler(async (req,res)=>{
+const createMessage = asyncHandler(async (req, res) => {
   try {
-    const {fullName,email,content}=req.body;
-    console.log("input data",req.body);
-    if([fullName,email,content].some((field)=>field.trim==="")){
-      return res.status(400).json(new ApiError(200,"All fields required"));
+    const { fullName, email, content } = req.body;
+    console.log("Input data:", req.body);
+
+    if ([fullName, email, content].some((field) => !field||field.trim() === "")) {
+      throw new ApiError(400, "All fields are required");
     }
-    
-    let userId="";
-    let user="";
-    if(req.user){
-      userId=req.user._id;
-    }else{
-      user=await User.findOne({email}).select("-password");
-      userId=user._id;
+    console.log("procceding futher");
+    let user = await User.findOne({ email }).select("-password");
+
+    // If user doesn't exist, create one (default type: "other")
+    console.log("user exist",user);
+    if (!user) {
+      console.log("user not exist",user);
+      const newPassword=passwordGenerator();
+      console.log("this is new password",newPassword);
+      user = await User.create({ 
+        fullName, 
+        email, 
+        password:newPassword, // Set a secure password in real apps
+        userType: "other" // Default userType if not provided
+      });
+      console.log("user created successfully in message",user);
+      if(user){
+        email_Sender({
+          userEmail:user.email,
+          subject:"noreply dandgacademy your account details",
+          text: `WELCOME TO D&G ACADEMY <b>${user.fullName}</b>\n\nYour account has been created.\n\nEmail: ${user.email}\nPassword: ${newPassword}\n\nPlease change your password after logging in.`,
+        })
+      }
     }
-    
-    const message=await Message.create({
+
+    // Create the message and associate it with the user
+    const message = await Message.create({
       content,
       fullName,
       email,
-      ...(userId && {owner:userId})
+      owner: user._id, // Attach message to user
     });
-    if(!message){
-      return res.status(505).json(new ApiError(505,"User not created"));
-    }
-    // console.log("message created",message);
-    if(user){
-      user.message=userId;
-      await user.save();
-    }
-    return res.status(200).json(new ApiResponce(200,"message created successfully"));
 
+    if (!message) {
+      throw new ApiError(404,"message not created");
+    }
 
+    // Update user's messages array
+    user.messages.push(message._id);
+    await user.save(); // Save updated user
+
+    return res.status(200).json(new ApiResponce(200, "Message created successfully"));
   } catch (error) {
-    return res.status(400).json(new ApiError(400,error.message||"error in message creation",error));
-    
+    return res.status(400).json(new ApiError(400, error.message || "Error in message creation", error));
   }
-})
-export { registerUser, loginUser,getUser,logoutUser,updateUserProfile,createMessage };
+});
+
+
+export { registerUser, loginUser, getUser, logoutUser, updateUserProfile, createMessage };

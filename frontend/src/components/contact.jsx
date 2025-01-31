@@ -32,6 +32,9 @@ export default function Contact() {
       if (response.ok) {
         showToast('Message sent successfully', 'success');
         setFormData({fullName:"",email:"",content:""});
+      }else{
+        console.log('Error in form submission', error)
+      showToast('please login signup first', 'error')
       }
     } catch (error) {
       console.log('Error in form submission', error)

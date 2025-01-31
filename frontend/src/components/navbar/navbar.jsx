@@ -74,17 +74,20 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link to="faculties" smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer">
+              <Link to="faculties" smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer"
+              onClick={()=>navigate("/")}>
                 Faculties
               </Link>
             </li>
             <li>
-              <Link to="result" smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer">
+              <Link to="result" smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer"
+              onClick={()=>navigate("/")}>
                 Result
               </Link>
             </li>
             <li>
-              <Link to="contactus" smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer">
+              <Link to="contactus" smooth={true} duration={500} offset={-80} className="nav-link cursor-pointer"
+              onClick={()=>navigate("/")}>
                 Contact Us
               </Link>
             </li>
