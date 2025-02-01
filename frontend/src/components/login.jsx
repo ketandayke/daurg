@@ -34,7 +34,7 @@ export default function Login({className="",onClose}) {
       // {loading&& <Loader/>}
       
       const {fullName,email,password,userType}=formData;
-      console.log("submit signup button clicked");
+      // console.log("submit signup button clicked");
       if(!fullName||!email||!password||!userType){
         return showToast("All fields are required ","error");
       }
@@ -260,3 +260,5 @@ export default function Login({className="",onClose}) {
     </div>
   );
 };
+
+

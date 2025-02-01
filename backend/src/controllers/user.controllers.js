@@ -57,14 +57,14 @@ const registerUser = asyncHandler(async (req, res) => {
   const createdUser = await User.findById(user._id).select("-password");
 
   if (!createdUser) {
-    return res.status(500).json(new ApiError(500, "User registration failed due to server issues"));
+    throw new ApiError(500, "User registration failed due to server issues")
   }
    
-  console.log("user created successfully",createdUser);
+  // console.log("user created successfully",createdUser);
   email_Sender({
     userEmail:createdUser.email,
     subject:"no reply your account details",
-    text: `WELCOME TO D&G ACADEMY ${user.fullName}\n\nYour account has been created.\n\nEmail: ${user.email}\nPassword: ${newPassword}\n\nPlease change your password after logging in.`  });
+    text: `WELCOME TO D&G ACADEMY ${user.fullName}\n\nYour account has been created.\n\nEmail: ${user.email}\nPassword: ${pass}\n\nPlease change your password after logging in.`  });
 
   return res.status(201).json(
     new ApiResponce(201, "User registered successfully", createdUser)
@@ -74,7 +74,7 @@ const registerUser = asyncHandler(async (req, res) => {
 // Login User
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  console.log("this is request of login",req.body);
+  // console.log("this is request of login",req.body);
 
   if ([email, password].some((field) => !field || field.trim() === "")) {
       throw new ApiError(400, "All fields are required")
@@ -120,13 +120,13 @@ const loginUser = asyncHandler(async (req, res) => {
 const getUser = asyncHandler(async (req, res) => {
   try {
     const user = req.user;
-    console.log("this is  request",req);
-    console.log("this is user getted form request",user);
+    // console.log("this is  request",req);
+    // console.log("this is user getted form request",user);
     if (!user) {
           throw new ApiError(404, "User not found") 
            }
 
-    console.log("Fetched User:", user);
+    // console.log("Fetched User:", user);
     return res.status(200).json(new ApiResponce(200, "User found",user));
   } catch (error) {
     console.error("Error in getUser:", error);
@@ -201,15 +201,15 @@ const createMessage = asyncHandler(async (req, res) => {
     if ([fullName, email, content].some((field) => !field||field.trim() === "")) {
       throw new ApiError(400, "All fields are required");
     }
-    console.log("procceding futher");
+    // console.log("procceding futher");
     let user = await User.findOne({ email }).select("-password");
 
     // If user doesn't exist, create one (default type: "other")
-    console.log("user exist",user);
+    // console.log("user exist",user);
     if (!user) {
-      console.log("user not exist",user);
+      // console.log("user not exist",user);
       const newPassword=passwordGenerator();
-      console.log("this is new password",newPassword);
+      // console.log("this is new password",newPassword);
       user = await User.create({ 
         fullName, 
         email, 
@@ -247,6 +247,8 @@ const createMessage = asyncHandler(async (req, res) => {
     return res.status(400).json(new ApiError(400, error.message || "Error in message creation", error));
   }
 });
+
+
 
 
 export { registerUser, loginUser, getUser, logoutUser, updateUserProfile, createMessage };
